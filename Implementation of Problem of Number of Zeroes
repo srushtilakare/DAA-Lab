@@ -1,0 +1,47 @@
+//implementing problem of number of zero
+#include<iostream>
+using namespace std;
+
+//creating function for checking count of zero
+void totalZero()
+{
+	int a[10],n,count,i,flag=1;
+	cout<<"\nEnter the Size of an Array : ";
+	cin>>n;
+	cout<<"\nEnter the Elements of Array : ";
+	for(i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	//for counting zeros after 1
+	for(i=0;i<n;i++)
+	{
+		if(a[i]==0)
+		{
+			if(a[i+1]==1)
+			{
+				cout<<"\nInvalid String";
+				flag=0;
+			}
+			else
+			count ++;
+		}		
+	}	
+	if(flag==0)
+		 exit;
+	else
+	cout<<endl<<count; //printing the count of zero if i/p string is valid
+	
+}
+
+int main()
+{
+	l1:totalZero(); //l1 is label for goto statement
+	int ch;
+	cout<<"\n\nWant to Continue Again ?  ";
+	cin>>ch;
+	
+	if(ch==1)
+	goto l1; //goto statement for backward jumping
+	return 0;
+}
