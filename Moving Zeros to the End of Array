@@ -1,0 +1,39 @@
+//moving all zeros of array to the end 
+#include<iostream>
+using namespace std;
+
+int main()
+{
+ 	 int n,a[10],i,temp=0;
+ 	 //temp variable is defined to zero and will be used to keeping track of index where the next non-zero element will be placed
+ 	 cout<<"\nEnter Array Size :  ";
+ 	 cin>>n;
+ 	 cout<<"\nEnter Array Elements :  ";
+ 	 for(i=0;i<n;i++) //for taking user input in array 
+ 	 {
+ 	 	cin>>a[i];
+	 }
+	
+	for(i=0;i<n;++i) 
+	{
+		//this for loop is used to move all non-zero elements to the front
+		if(a[i]!=0)
+		{
+			a[temp++]=a[i];
+		}
+	}
+	
+	while(temp<n) //for filling the remaining positions with zeros
+	{
+		a[temp++]=0;
+	}
+	
+	cout<<"\nArray After Moving Zeros to End:  ";
+	for(i=0;i<n;i++)
+	{
+		cout<<a[i]<<" ";
+	}
+	
+	return 0;
+		
+}
