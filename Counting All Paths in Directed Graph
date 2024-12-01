@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 100; // Maximum number of vertices
+int graph[MAX][MAX]; // Adjacency matrix to store the graph
+bool visited[MAX];   // To keep track of visited nodes
+int pathCount = 0;   // To count the total number of paths
+
+// Function to perform DFS and count paths
+void countPaths(int src, int dest, int n) {
+    if (src == dest) { // If source equals destination, one valid path is found
+        pathCount++;
+        return;
+    }
+
+    visited[src] = true; // Mark current node as visited
+
+    for (int i = 0; i < n; i++) {
+        // Explore unvisited neighbors
+        if (graph[src][i] && !visited[i]) {
+            countPaths(i, dest, n);
+        }
+    }
+
+    visited[src] = false; // Backtrack (mark node as unvisited)
+}
+
+int main() {
+    int n, edges;
+    cout << "Enter the number of vertices: ";
+    cin >> n;
+
+    // Initialize the graph
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            graph[i][j] = 0;
+        }
+    }
+
+    cout << "Enter the number of edges: ";
+    cin >> edges;
+
+    cout << "Enter the edges (from, to):" << endl;
+    for (int i = 0; i < edges; i++) {
+        int u, v;
+        cin >> u >> v;
+        graph[u][v] = 1; // Mark edge in the adjacency matrix
+    }
+
+    int src, dest;
+    cout << "Enter the source and destination: ";
+    cin >> src >> dest;
+
+    // Count all paths using DFS
+    countPaths(src, dest, n);
+
+    // Output the result
+    cout << "Total paths between " << src << " and " << dest << ": " << pathCount << endl;
+
+    return 0;
+}
